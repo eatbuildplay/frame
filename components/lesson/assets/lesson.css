@@ -3,6 +3,17 @@ body {
   font-size: 16px;
   margin: 0;
 }
+button {
+  font-size: 20px;
+  background: #F36D21;
+  padding: 15px 10px;
+  min-width: 120px;
+  border-radius: 5px;
+  border: solid 2px #FFF;
+  cursor: pointer;
+  margin: 10px 15px;
+  color: #FFFFFF;
+}
 
 /* Lesson Sections */
 .lesson-section {
@@ -32,19 +43,19 @@ body {
 /* FlashCards */
 .flashcard {
   display: inline-block;
-  width: 20%;
-  background: #D8D8D8;
+  width: 50%;
+  height: 250px;
+  overflow: hidden;
+  background: #DE2026;
   box-sizing: border-box;
   padding: 15px;
-  border: solid 2px #FFF;
   cursor: pointer;
-  min-height: 150px;
 }
 .flashcard:hover {
-  background: #F2F2F2;
+  background: #DE2026F5;
 }
 .flashcard h2 {
-  font-size: 26px;
+  font-size: 32px;
   color: #424242;
   font-family: verdana, sans-serif;
   font-weight: bold;
