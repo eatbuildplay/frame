@@ -7,8 +7,9 @@ class PostList {
   public function __construct() {
 
     $this->initShortcode();
-    $this->addScripts();
     $this->initAjaxHooks();
+
+    add_action('wp_enqueue_scripts', [$this, 'addScripts']);
 
   }
 
