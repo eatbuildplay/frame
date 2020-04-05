@@ -32,6 +32,9 @@ class FR_Plugin {
     require_once( FRAME_PATH . 'components/lesson/src/Lesson.php' );
     new \Frame\Lesson\Lesson();
 
+    require_once( FRAME_PATH . 'components/student/src/Student.php' );
+    new \Frame\Student\Student();
+
   }
 
 }

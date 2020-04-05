@@ -4,7 +4,7 @@
 
   <h2 class="lesson-section-title">1) WordScan</h2>
   <div class="lesson-section-intro">
-    In this lesson you will to learn to read, speak and hear these 10 words. Scan over them briefly now, taking note of the translation of the pronunciation.
+    In this lesson you will to learn to read, speak and hear 10 words. Scan over the words briefly now, taking note of the translation and the pronunciation.
   </div>
 
   <?php
@@ -15,9 +15,8 @@
       $wordFields = get_fields( $wordId );
 
       print '<div class="wordscan-word">';
-      print '<h3>' . $wordPost->post_title . '</h3>';
-      print '<h4>' . $wordFields['translation'] . '</h4>';
-      print '<h4>' . $wordFields['pronunciation'] . '</h4>';
+      print '<h2>' . $wordFields['translation'] . ' = ' . $wordPost->post_title . '</h2>';
+      print '<h3>' . $wordFields['pronunciation'] . '</h3>';
       print '</div>';
 
     }
@@ -49,12 +48,16 @@
         print '</div>';
         print '<div class="flashcard-down">';
           print '<h3>' . $wordFields['translation'] . '</h3>';
+          print '<button class="flash-know">I GOT IT!</button>';
+          print '<button class="flash-know">I MISSED IT!</button>';
         print '</div>';
       print '</div>';
 
     }
 
     ?>
+
+    <button class="flashcard-reset">Reset Flashcards</button>
 
 </div>
 
@@ -74,9 +77,16 @@
       $wordPost = get_post( $wordId );
       $wordFields = get_fields( $wordId );
 
-      print '<div class="flashcard">';
+      print '<div class="word-selection-word">';
       print '<h3>' . $wordPost->post_title . '</h3>';
       print '<h4>' . $wordFields['pronunciation'] . '</h4>';
+
+      print '<h2>Choose the word:</h2>';
+      print '<button>' . 'Wrong 1' . '</button>';
+      print '<button>' . $wordFields['translation'] . '</button>';
+print '<button>' . 'Wrong 2' . '</button>';
+print '<button>' . 'Wrong 3' . '</button>';
+
       print '</div>';
 
     }
@@ -87,6 +97,12 @@
 
 
 <style>
+
+body {
+  font-family: verdana, sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
 
 /* Lesson Sections */
 .lesson-section {
@@ -105,7 +121,12 @@
 /* WordScan */
 .wordscan-word {
   display: inline-block;
-  width: 20%;
+  box-sizing: border-box;
+  width: 46%;
+  min-width: 320px;
+  padding: 20px;
+  margin: 2%;
+  background: #D8D8D8;
 }
 
 /* FlashCards */
