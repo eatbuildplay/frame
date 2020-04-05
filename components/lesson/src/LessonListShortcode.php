@@ -34,8 +34,8 @@ class LessonListShortcode {
     );
 
     $template = new \Frame\Template();
-    $template->path = 'components/lesson/src/templates/';
-    $template->name = 'listing-table-widget';
+    $template->path = 'components/lesson/templates/';
+    $template->name = 'lesson-list';
     $template->data = array(
       'lessons' => $lessons
     );

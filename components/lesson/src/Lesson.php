@@ -13,6 +13,9 @@ class Lesson {
     require_once( FRAME_PATH . 'components/lesson/src/LessonListShortcode.php' );
     new LessonListShortcode();
 
+    require_once( FRAME_PATH . 'components/lesson/src/LessonSingleShortcode.php' );
+    new LessonSingleShortcode();
+
   }
 
   public function jxListLoad() {

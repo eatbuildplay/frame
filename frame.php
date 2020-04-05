@@ -29,6 +29,9 @@ class FR_Plugin {
 
     new PostList();
 
+    require_once( FRAME_PATH . 'components/lesson/src/Lesson.php' );
+    new \Frame\Lesson\Lesson();
+
   }
 
 }
