@@ -22,11 +22,31 @@ class LessonSingleShortcode {
 
     $template = new \Frame\Template();
     $template->path = 'components/lesson/templates/';
+
+    $content = '';
+
+    // wordscan
     $template->name = 'lesson-single-wordscan';
     $template->data = array(
       'lessonFields' => $lessonFields
     );
-    return $template->get();
+    $content .= $template->get();
+
+    // flashcards
+    $template->name = 'lesson-single-flashcards';
+    $template->data = array(
+      'lessonFields' => $lessonFields
+    );
+    $content .= $template->get();
+
+    // word selection
+    $template->name = 'lesson-single-word-selection';
+    $template->data = array(
+      'lessonFields' => $lessonFields
+    );
+    $content .= $template->get();
+
+    return $content;
 
   }
 
