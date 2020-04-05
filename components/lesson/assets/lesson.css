@@ -1,3 +1,59 @@
-/*
- * WordScan
- */
+body {
+  font-family: verdana, sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Lesson Sections */
+.lesson-section {
+  margin: 40px 0;
+  width: 100%;
+  padding: 0;
+  color: #272E39;
+}
+.lesson-section-title {
+  font-family: verdana, sans-serif;
+  font-size: 32px;
+  font-weight: normal;
+  color: #272E39;
+}
+
+/* WordScan */
+.wordscan-word {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 46%;
+  min-width: 320px;
+  padding: 15px;
+  margin: 2%;
+  background: #209FBF;
+}
+
+/* FlashCards */
+.flashcard {
+  display: inline-block;
+  width: 20%;
+  background: #D8D8D8;
+  box-sizing: border-box;
+  padding: 15px;
+  border: solid 2px #FFF;
+  cursor: pointer;
+  min-height: 150px;
+}
+.flashcard:hover {
+  background: #F2F2F2;
+}
+.flashcard h2 {
+  font-size: 26px;
+  color: #424242;
+  font-family: verdana, sans-serif;
+  font-weight: bold;
+
+}
+
+.flashcard-up, .flashcard-down {
+  display:none;
+}
+.flashcard-active {
+  display: block;
+}

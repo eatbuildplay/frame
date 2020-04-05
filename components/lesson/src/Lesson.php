@@ -16,6 +16,8 @@ class Lesson {
     require_once( FRAME_PATH . 'components/lesson/src/LessonSingleShortcode.php' );
     new LessonSingleShortcode();
 
+    add_action('wp_enqueue_scripts', [$this, 'addScripts']);
+
   }
 
   public function jxListLoad() {
@@ -40,6 +42,26 @@ class Lesson {
     $response['lessons'] = $lessons;
 
     print json_encode( $response );
+
+  }
+
+  public function addScripts() {
+
+    wp_enqueue_style(
+      'frame-lesson-style',
+      FRAME_URL . 'components/lesson/assets/lesson.css',
+      array(),
+      '1.0.0',
+      'all'
+    );
+
+    wp_enqueue_script(
+      'frame-lesson-js',
+      FRAME_URL . 'components/lesson/assets/lesson.js',
+      array( 'jquery' ),
+      '1.0.0',
+      true
+    );
 
   }
 
