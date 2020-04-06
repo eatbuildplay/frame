@@ -3,6 +3,9 @@ body {
   font-size: 16px;
   margin: 0;
 }
+h1 {
+  font-size: 44px;
+}
 button {
   font-size: 20px;
   background: #F36D21;
@@ -22,11 +25,19 @@ button {
   padding: 0;
   color: #272E39;
 }
+.lesson-section-header {
+  margin: 15px 0 30px 0;
+  padding: 0 15px 20px 15px;
+  border-bottom: solid 6px #54595F;
+}
 .lesson-section-title {
   font-family: verdana, sans-serif;
   font-size: 32px;
   font-weight: normal;
   color: #272E39;
+}
+.lesson-section-intro {
+  font-size: 18px;
 }
 
 /* WordScan */

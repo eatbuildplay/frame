@@ -16,13 +16,6 @@
 
   ?>
 
-  <div class="lesson-section-header">
-    <h2 class="lesson-section-title">1) WordScan</h2>
-    <div class="lesson-section-intro">
-      In this lesson you will to learn to read, speak and hear 10 words. Scan over the words briefly now, taking note of the translation and the pronunciation.
-    </div>
-  </div>
-
   <?php
 
     foreach( $lessonFields['words'] as $wordId ) {
