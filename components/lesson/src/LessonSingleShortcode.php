@@ -25,6 +25,11 @@ class LessonSingleShortcode {
 
     $content = '';
 
+    // tabs
+    $template->name = 'lesson-single-tabs';
+    $template->data = array();
+    $content .= $template->get();
+
     // wordscan
     $template->name = 'lesson-single-wordscan';
     $template->data = array(
@@ -44,6 +49,11 @@ class LessonSingleShortcode {
     $template->data = array(
       'lessonFields' => $lessonFields
     );
+    $content .= $template->get();
+
+    // tabs
+    $template->name = 'lesson-single-footer';
+    $template->data = array();
     $content .= $template->get();
 
     return $content;

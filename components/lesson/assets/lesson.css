@@ -27,8 +27,9 @@ button {
 }
 .lesson-section-header {
   margin: 15px 0 30px 0;
-  padding: 0 15px 20px 15px;
+  padding: 25px 15px 25px 15px;
   border-bottom: solid 6px #54595F;
+  background: #FFFFFF22;
 }
 .lesson-section-title {
   font-family: verdana, sans-serif;
@@ -42,12 +43,10 @@ button {
 
 /* WordScan */
 .wordscan-word {
-  display: inline-block;
   box-sizing: border-box;
-  width: 46%;
+  width: 100%;
   min-width: 320px;
   padding: 15px;
-  margin: 2%;
   background: #209FBF;
 }
 
@@ -89,6 +88,7 @@ button {
     box-sizing: border-box;
     width: 100%;
     padding: 15px;
+    margin: 0;
     background: #209FBF;
   }
 

@@ -30,7 +30,7 @@
   }
 
   // init load
-  loadPostList();
+  // loadPostList();
 
   $('#filter_topic').on('change', function() {
     loadPostList();
