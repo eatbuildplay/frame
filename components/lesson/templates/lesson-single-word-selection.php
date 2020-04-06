@@ -40,10 +40,19 @@ function fetchSelectionOptions( $allTranslations, $correctTranslation ) {
 
 <div class="lesson-section lesson-section-word-selection">
 
-  <h2 class="lesson-section-title">3) Word Selection</h2>
-  <div class="lesson-section-intro">
-    In this exercise you'll be given the word and asked to choose it's English counterpart.
-  </div>
+  <?php
+
+    $template = new \Frame\Template();
+    $template->path = 'components/lesson/templates/';
+    $template->name = 'lesson-section-header';
+    $template->data = array(
+      'number' => 3,
+      'title' => 'Word Selection',
+      'intro' => "In this exercise you'll be given the word and asked to choose it's English counterpart."
+    );
+    $template->render();
+
+  ?>
 
   <?php
 

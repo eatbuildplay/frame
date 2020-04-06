@@ -1,9 +1,18 @@
 <div class="lesson-section lesson-section-flashcards">
 
-  <h2 class="lesson-section-title">2) FlashCards</h2>
-  <div class="lesson-section-intro">
-    In this section you'll learn to associate the Spanish word with it's English counterpart. If possible, say the word out loud during this exercise to practice the pronunciation.
-  </div>
+  <?php
+
+    $template = new \Frame\Template();
+    $template->path = 'components/lesson/templates/';
+    $template->name = 'lesson-section-header';
+    $template->data = array(
+      'number' => 2,
+      'title' => 'FlashCards',
+      'intro' => 'In this section you will learn to associate the Spanish word with it\'s English counterpart. If possible, say the word out loud during this exercise to practice the pronunciation.'
+    );
+    $template->render();
+
+  ?>
 
   <?php
 
