@@ -18,6 +18,44 @@ button {
   color: #FFFFFF;
 }
 
+/* Lesson Single Tabs */
+.lesson-single-tabs {
+  width: 100%;
+  padding: 30px 30px 0 30px;
+  background: #14699A;
+}
+.lesson-single-tabs h2 {
+  font-size: 28px;
+  font-weight: normal;
+  margin-bottom: 40px;
+  color: #FFFFFF55;
+}
+.lesson-single-tabs ul {
+  padding: 0;
+  margin: 0;
+}
+.lesson-single-tabs li {
+  display: inline-block;
+  padding: 15px 25px;
+  margin: 0;
+  min-width: 120px;
+  cursor: pointer;
+  border: solid 2px #FFFFFF55;
+  border-bottom: none;
+  color: #FFFFFFD5;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 8px 8px 0 0;
+}
+.lesson-single-tabs li.active {
+  background: #148642;
+  color: #FFFFFF;
+}
+.lesson-single-tabs li:hover {
+  background: #F36D21;
+  color: #FFFFFF;
+}
+
 /* Lesson Sections */
 .lesson-section {
   margin: 40px 0;
