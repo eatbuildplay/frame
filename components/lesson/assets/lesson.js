@@ -6,12 +6,50 @@
 
   var wordscan = {
 
+    wordIndex: 0,
+
     init: function() {
 
       console.log( wordscanWords )
 
       $('.wordscan-start').on('click', wordscan.start)
+      $( document ).on('click', '.wordscan-controls button', wordscan.rating)
 
+    },
+
+    rating: function() {
+
+      console.log('rating')
+
+      // get word if any left
+      var newWordIndex = wordscan.wordIndex +1
+      var word = wordscanWords[ newWordIndex ]
+
+      console.log( word )
+
+      if( word == undefined ) {
+        wordscan.finish()
+        return;
+      }
+
+      // stash current wordIndex
+      wordscan.wordIndex = wordscan.wordIndex +1
+
+      // get template
+      var template = $('#wordscan-word-template').html()
+
+      // replace tags with content data
+      template = template.replace('{word}', word.word)
+      template = template.replace('{translation}', word.translation)
+      template = template.replace('{pronunciation}', word.pronunciation)
+
+      // render content
+      $('.lesson-section-wordscan').html( template )
+
+    },
+
+    finish: function() {
+      $('.lesson-section-wordscan').html( 'congrats you finished all the words!!')
     },
 
     start: function() {
