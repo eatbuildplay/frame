@@ -3,9 +3,9 @@
   <h2>Lesson Exercises</h2>
 
   <ul>
-    <li class="active">Word Scan</li>
-    <li>Flash Cards</li>
-    <li>Word Selection</li>
+    <li class="active" data-section="wordscan">WordScan</li>
+    <li data-section="flashcards">FlashCards</li>
+    <li data-section="word-selection">Word Selection</li>
   </ul>
 
 </div>

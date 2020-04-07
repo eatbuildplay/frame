@@ -1,9 +1,5 @@
 (function($) {
 
-  console.log('hello hello 3')
-
-
-
   var wordscan = {
 
     wordIndex: 0,
@@ -73,6 +69,37 @@
 
   }
   wordscan.init()
+  /* end wordscan class */
+
+  /*
+   *
+   * Flashcards
+   *
+   */
+  var flashcard = {
+
+    init: function() {
+
+    }
+
+  }
+
+  flashcard.init();
+
+  /* Loose Functions */
+
+  // lesson single tabs
+  $('.lesson-single-tabs li').on('click', function() {
+
+    $(this).addClass('active')
+    $('.lesson-single-tabs li').removeClass('active')
+    var sectionName = $(this).data('section')
+
+
+    $('.lesson-section').hide()
+    $('.lesson-section-' + sectionName).show()
+
+  })
 
   // flashcard click
   $('.flashcard-up').on('click', function() {

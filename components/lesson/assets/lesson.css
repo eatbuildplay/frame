@@ -89,6 +89,9 @@ button {
 }
 
 /* FlashCards */
+.lesson-section-flashcards {
+  display: none;
+}
 .flashcard {
   display: inline-block;
   width: 50%;
@@ -115,6 +118,13 @@ button {
 }
 .flashcard-active {
   display: block;
+}
+
+/*
+ * Word Selection Exercise
+ */
+.lesson-section-word-selection {
+  display: none;
 }
 
 

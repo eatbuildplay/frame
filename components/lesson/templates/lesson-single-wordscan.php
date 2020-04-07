@@ -21,6 +21,8 @@
 
 ?>
 
+<div class="lesson-section lesson-section-wordscan">
+
 <?php
 
   $template = new \Frame\Template();
@@ -35,8 +37,8 @@
 
 ?>
 
-<div class="lesson-section lesson-section-wordscan">
   <button class="wordscan-start">Hurry up and start the lesson!</button>
+
 </div>
 
 <!-- word template -->
