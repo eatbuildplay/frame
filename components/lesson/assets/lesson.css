@@ -62,6 +62,7 @@ button {
   width: 100%;
   padding: 0;
   color: #272E39;
+  background: #0000001A;
 }
 .lesson-section-header {
   margin: 15px 0 30px 0;
@@ -125,6 +126,28 @@ button {
  */
 .lesson-section-word-selection {
   display: none;
+}
+
+/*
+ * Lesson Single Footer
+ */
+.lesson-single-footer {
+  margin: 120px 0 35px 0;
+  background: #4E8C3F;
+  color: #FFFFFF;
+  padding: 40px 25px;
+  font-size: 20px;
+  text-align: center;
+}
+.lesson-single-footer button {
+  color: #272E39;
+  background: #FFFFFF1A;
+  border: none;
+  border-radius: 0;
+  padding: 35px 50px;
+}
+.lesson-single-footer button:hover {
+  background: #FFFFFF2A;
 }
 
 

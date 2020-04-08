@@ -45,7 +45,8 @@
     },
 
     finish: function() {
-      $('.lesson-section-wordscan').html( 'congrats you finished all the words!!')
+      var template = $('#wordscan-finish').html()
+      $('.lesson-section-wordscan').html( template )
     },
 
     start: function() {
@@ -91,8 +92,9 @@
   // lesson single tabs
   $('.lesson-single-tabs li').on('click', function() {
 
-    $(this).addClass('active')
     $('.lesson-single-tabs li').removeClass('active')
+    $(this).addClass('active')
+
     var sectionName = $(this).data('section')
 
 
@@ -128,5 +130,16 @@
    $('.word-selection-word button').on('click', function() {
      console.log('selected word...')
    })
+
+  // return to top button
+  $('.s10-to-top').on('click', function() {
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+  })
+
+  // next lesson button
+  $('.s10-next-lesson').on('click', function() {
+    // we need to stash in JS the "next lesson" in the series
+    window.location.href = 'https://spanish10.com/lesson/lesson-5-colors/';
+  })
 
 })( jQuery );
