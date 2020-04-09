@@ -1,5 +1,5 @@
 body {
-  font-family: verdana, sans-serif;
+  font-family: "Montserrat", Sans-serif;
   font-size: 16px;
   margin: 0;
 }
@@ -11,7 +11,6 @@ button {
   background: #F36D21;
   padding: 15px 10px;
   min-width: 120px;
-  border-radius: 5px;
   border: solid 2px #FFF;
   cursor: pointer;
   margin: 10px 15px;
@@ -21,14 +20,15 @@ button {
 /* Lesson Single Tabs */
 .lesson-single-tabs {
   width: 100%;
-  padding: 30px 30px 0 30px;
+  padding: 15px 30px 30px 30px;
+  margin: 0;
   background: #14699A;
 }
 .lesson-single-tabs h2 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: normal;
-  margin-bottom: 40px;
-  color: #FFFFFF55;
+  margin-bottom: 20px;
+  color: #00000055;
 }
 .lesson-single-tabs ul {
   padding: 0;
@@ -36,16 +36,18 @@ button {
 }
 .lesson-single-tabs li {
   display: inline-block;
-  padding: 15px 25px;
+  padding: 20px 40px;
   margin: 0;
-  min-width: 120px;
   cursor: pointer;
-  border: solid 2px #FFFFFF55;
-  border-bottom: none;
+  border-top: solid 2px #FFFFFF55;
+  border-right: solid 2px #FFFFFF55;
+  border-bottom: solid 2px #FFFFFF55;
   color: #FFFFFFD5;
-  font-size: 18px;
-  font-weight: 400;
-  border-radius: 8px 8px 0 0;
+  font-size: 22px;
+  background: #FFFFFF1A;
+}
+.lesson-single-tabs li:first-child {
+  border-left: solid 2px #FFFFFF55;
 }
 .lesson-single-tabs li.active {
   background: #148642;
@@ -56,29 +58,46 @@ button {
   color: #FFFFFF;
 }
 
+/* Lesson Exercise Body */
+.lesson-section-body {
+  padding: 35px;
+}
+
+/* Control Buttons */
+.s10-start-exercise-btn {
+  background: #272E39;
+  border: solid 2px #272E39F1;
+  color: #FFFFFF;
+  font-size: 32px;
+  font-weight: bold;
+  width: 100%;
+  margin: 0;
+}
+
 /* Lesson Sections */
 .lesson-section {
-  margin: 40px 0;
-  width: 100%;
+  margin: 0;
   padding: 0;
+  width: 100%;
   color: #272E39;
-  background: #0000001A;
+  background: #DE2026;
 }
 .lesson-section-header {
-  margin: 15px 0 30px 0;
-  padding: 25px 15px 25px 15px;
-  border-bottom: solid 6px #54595F;
+  margin: 0 0 30px 0;
+  padding: 50px 50px 50px 50px;
+  border-bottom: solid 6px #0000001A;
   background: #FFFFFF22;
+  color: #272E39;
+  font-size: 20px;
+  line-height: 1.7;
 }
 .lesson-section-title {
-  font-family: verdana, sans-serif;
   font-size: 32px;
   font-weight: normal;
+  margin: 0 0 25px 0;
   color: #272E39;
 }
-.lesson-section-intro {
-  font-size: 18px;
-}
+.lesson-section-intro {}
 
 /* WordScan */
 .wordscan-word {
@@ -86,7 +105,38 @@ button {
   width: 100%;
   min-width: 320px;
   padding: 15px;
-  background: #209FBF;
+}
+.wordscan-word-display {
+  font-size: 48px;
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+}
+.wordscan-word-pronunciation {
+  font-size: 28px;
+  font-style: italic;
+  color: #FFFFFFF8;
+  margin: 0 0 30px 0;
+}
+.wordscan-controls {
+  margin: 60px 0 30px 0;
+}
+.wordscan-controls button {
+  background: #0000001A;
+  color: #272E39;
+  font-size: 26px;
+  border: none;
+  padding: 30px 50px;
+  border-right: solid 1px #272E39;
+  margin: 0 0 0 0;
+}
+.wordscan-controls button:last-child {
+  border-right: none;
+}
+.wordscan-controls button:hover {
+  background: #0000001F;
+}
+.wordscan-controls button i {
+  margin-bottom: 12px;
 }
 
 /* FlashCards */
@@ -109,7 +159,6 @@ button {
 .flashcard h2 {
   font-size: 32px;
   color: #424242;
-  font-family: verdana, sans-serif;
   font-weight: bold;
 
 }
@@ -143,7 +192,6 @@ button {
   color: #272E39;
   background: #FFFFFF1A;
   border: none;
-  border-radius: 0;
   padding: 35px 50px;
 }
 .lesson-single-footer button:hover {

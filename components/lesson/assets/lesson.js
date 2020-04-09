@@ -40,13 +40,13 @@
       template = template.replace('{pronunciation}', word.pronunciation)
 
       // render content
-      $('.lesson-section-wordscan').html( template )
+      $('.lesson-section-wordscan .lesson-section-body').html( template )
 
     },
 
     finish: function() {
       var template = $('#wordscan-finish').html()
-      $('.lesson-section-wordscan').html( template )
+      $('.lesson-section-wordscan .lesson-section-body').html( template )
     },
 
     start: function() {
@@ -64,7 +64,8 @@
       template = template.replace('{pronunciation}', word.pronunciation)
 
       // render content
-      $('.lesson-section-wordscan').append( template )
+      $('.lesson-section-wordscan .lesson-section-header').hide()
+      $('.lesson-section-wordscan .lesson-section-body').append( template )
 
     }
 

@@ -8,12 +8,12 @@
 <!-- Templates -->
 <template id="wordscan-finish">
   <div class="wordscan-finish">
-    <h2>No more words!</h2>
+    <h2>WordScan Completed!</h2>
     <p>Congrats, you have completed this first exercise in the lesson.</p>
 
-    <ul>
-      <li>Next Exercise</li>
-      <li>Start Over</li>
-    </ul>
+    <div class="wordscan-controls">
+      <button><i class="fas fa-redo-alt fa-2x"></i> <br /><span>Restart Exercise</span></button><button><i class="fas fa-hand-point-right fa-2x"></i> <br /><span>Next Exercise</span></button>
+    </div>
+
   </div>
 </template>

@@ -1,3 +1,5 @@
+<div class="lesson-section lesson-section-wordscan">
+
 <?php
 
   $words = array();
@@ -21,8 +23,6 @@
 
 ?>
 
-<div class="lesson-section lesson-section-wordscan">
-
 <?php
 
   $template = new \Frame\Template();
@@ -37,19 +37,20 @@
 
 ?>
 
-  <button class="wordscan-start">Hurry up and start the lesson!</button>
+  <div class="lesson-section-body">
+    <button class="s10-start-exercise-btn wordscan-start">Hurry up and start the lesson!</button>
+  </div>
 
 </div>
 
 <!-- word template -->
 <template id="wordscan-word-template">
   <div class="wordscan-word">
-    <h2>{word} = {translation}</h2>
-    <h3>{pronunciation}</h3>
+    <h2 class="wordscan-word-display">{word} = {translation}</h2>
+    <h3 class="wordscan-word-pronunciation">{pronunciation}</h3>
     <div class="wordscan-controls">
-      <button>I don't know this word</button>
-      <button>I know this word medio</button>
-      <button>I have full confidence in this word</button>
+      <h3>Rate your knowledge of this word</h3>
+      <button><i class="fas fa-thumbs-down fa-2x"></i> <br /><span>Weak</span></button><button><i class="fas fa-balance-scale fa-2x"></i> <br /><span>Medium</span></button><button><i class="fas fa-thumbs-up fa-2x"></i> <br /><span>Strong</span></button>
     </div>
   </div>
 </template>
