@@ -9,7 +9,8 @@
       console.log( wordscanWords )
 
       $('.wordscan-start').on('click', wordscan.start)
-      $( document ).on('click', '.wordscan-controls button', wordscan.rating)
+      $( document ).on('click', '.wordscan-controls .s10-rating', wordscan.rating)
+      $( document ).on('click', '.wordscan-controls .s10-restart', wordscan.restart)
 
     },
 
@@ -20,8 +21,6 @@
       // get word if any left
       var newWordIndex = wordscan.wordIndex +1
       var word = wordscanWords[ newWordIndex ]
-
-      console.log( word )
 
       if( word == undefined ) {
         wordscan.finish()
@@ -49,6 +48,11 @@
       $('.lesson-section-wordscan .lesson-section-body').html( template )
     },
 
+    restart: function() {
+      wordscan.wordIndex = 0;
+      wordscan.start();
+    },
+
     start: function() {
 
       // hide start
@@ -65,7 +69,7 @@
 
       // render content
       $('.lesson-section-wordscan .lesson-section-header').hide()
-      $('.lesson-section-wordscan .lesson-section-body').append( template )
+      $('.lesson-section-wordscan .lesson-section-body').html( template )
 
     }
 
