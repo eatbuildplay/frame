@@ -35,7 +35,8 @@ class PostList {
         'post_type'   => $postType,
         'meta_query'  => $metaquery,
         'tax_query'   => $taxquery,
-        'orderby'     => 'title',
+        'meta_key'    => 'display_order',
+        'orderby'     => 'meta_value_num',
         'order'       => 'ASC'
       )
     );
@@ -79,31 +80,10 @@ class PostList {
 
     // setup metaquery
     $metaquery = [];
-    $metaquery['relation'] = 'AND';
-
-    /*
-    if( $filters['propertyType'] ) {
-
-      $metaquery[] = array(
-        'key'	  	=> 'property_type',
-        'value'	  => $filters['propertyType'],
-        'compare' => '=',
-      );
-
-    }
-    */
+    $metaquery = [];
     $taxquery = [];
-    if( $filters['topic'] ) {
-      $taxquery = array(
-        array(
-          'taxonomy' => 'topic',
-          'field'    => 'term_id',
-          'terms'    => $filters['topic'],
-          'include_children' => false
-        )
-      );
-    }
 
+    // fetch posts
     $posts = $this->fetchPosts( $metaquery, $taxquery );
 
     // setup template

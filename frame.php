@@ -24,7 +24,6 @@ class FR_Plugin {
   public function __construct() {
 
     require_once( FRAME_PATH . 'src/Template.php' );
-    require_once( FRAME_PATH . 'src/post_types/post_type.php' );
     require_once( FRAME_PATH . 'src/post_lists/PostList.php' );
 
     require_once( FRAME_PATH . 'components/course/src/Course.php' );

@@ -5,3 +5,47 @@ h1 {
   font-size: 32px;
   color: #272E39;
 }
+
+.frame-post-list-canvas {
+  font-family:"Montserrat", Sans-serif;
+  display: -webkit-flex; /* Safari */
+  display: flex; /* Standard syntax */
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+  justify-content: stretch;
+}
+.frame-post-list-canvas a {
+  font-family:"Montserrat", Sans-serif;
+  color: #54595F;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 25px;
+  width: 100%;
+}
+.frame-post-list-item {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 25px;
+  width: 100%;
+  min-width: 180px;
+  cursor: pointer;
+  text-align: center;
+  background: #272E39;
+  color: #FFF;
+}
+.frame-post-list-item h2 {
+  padding: 0 0 0 0;
+}
+.frame-post-list-item p {
+  text-align: left;
+}
+
+.frame-post-list-item-wrap {
+  width: 33%;
+}
+
+.frame-post-list-canvas {
+  max-width: 100%;
+  overflow: hidden;
+}
