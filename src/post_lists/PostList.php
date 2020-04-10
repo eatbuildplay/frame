@@ -14,7 +14,7 @@ class PostList {
   }
 
   public function getPostType() {
-    return 'phrase';
+    return 'course';
   }
 
   public function initShortcode() {
@@ -34,7 +34,9 @@ class PostList {
         'numberposts' => -1,
         'post_type'   => $postType,
         'meta_query'  => $metaquery,
-        'tax_query'   => $taxquery
+        'tax_query'   => $taxquery,
+        'orderby'     => 'title',
+        'order'       => 'ASC'
       )
     );
 
