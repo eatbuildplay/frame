@@ -16,8 +16,6 @@
 
     rating: function() {
 
-      console.log('rating')
-
       // get word if any left
       var newWordIndex = wordscan.wordIndex +1
       var word = wordscanWords[ newWordIndex ]
@@ -30,6 +28,11 @@
       // stash current wordIndex
       wordscan.wordIndex = wordscan.wordIndex +1
 
+      // load image file from url
+      if( word.image ) {
+        wordscan.imageLoad( word.image );
+      }
+
       // get template
       var template = $('#wordscan-word-template').html()
 
@@ -37,10 +40,25 @@
       template = template.replace('{word}', word.word)
       template = template.replace('{translation}', word.translation)
       template = template.replace('{pronunciation}', word.pronunciation)
+      template = template.replace('{image}', word.image);
 
-      // render content
+      // place content
       $('.lesson-section-wordscan .lesson-section-body').html( template )
 
+      // get the word as an element so we can make changes
+      var $wordEl = $('.wordscan-word');
+
+      // image handling
+      if( !word.image ) {
+        // remove missing image
+        $wordEl.find('img').remove()
+      }
+
+    },
+
+    imageLoad: function( url ) {
+      var img = new Image();
+      img.src = url;
     },
 
     finish: function() {
@@ -57,20 +75,8 @@
 
       // hide start
       $('.wordscan-start').hide()
-
-      // get template
-      var template = $('#wordscan-word-template').html()
-
-      // replace tags with content data
-      var word = wordscanWords[0]
-      template = template.replace('{word}', word.word)
-      template = template.replace('{translation}', word.translation)
-      template = template.replace('{pronunciation}', word.pronunciation)
-
-      // render content
       $('.lesson-section-wordscan .lesson-section-header').hide()
-      $('.lesson-section-wordscan .lesson-section-body').html( template )
-
+      wordscan.rating()
     }
 
   }

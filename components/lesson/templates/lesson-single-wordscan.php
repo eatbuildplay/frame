@@ -12,6 +12,7 @@
     $word->word = $wordPost->post_title;
     $word->translation = $wordFields['translation'];
     $word->pronunciation = $wordFields['pronunciation'];
+    $word->image = $wordFields['image'];
 
     $words[] = $word;
 
@@ -46,8 +47,11 @@
 <!-- word template -->
 <template id="wordscan-word-template">
   <div class="wordscan-word">
+
+    <img src="{image}" />
     <h2 class="wordscan-word-display">{word} = {translation}</h2>
     <h3 class="wordscan-word-pronunciation">{pronunciation}</h3>
+
     <div class="wordscan-controls">
       <h3>Rate your knowledge of this word</h3>
       <button class="s10-rating"><i class="fas fa-thumbs-down fa-2x"></i> <br /><span>Weak</span></button><button class="s10-rating"><i class="fas fa-balance-scale fa-2x"></i> <br /><span>Medium</span></button><button class="s10-rating"><i class="fas fa-thumbs-up fa-2x"></i> <br /><span>Strong</span></button>
