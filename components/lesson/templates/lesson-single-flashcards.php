@@ -2,6 +2,30 @@
 
   <?php
 
+    $words = array();
+    foreach( $lessonFields['words'] as $wordId ) {
+
+      $wordPost = get_post( $wordId );
+      $wordFields = get_fields( $wordId );
+
+      $word = new stdClass();
+      $word->word = $wordPost->post_title;
+      $word->translation = $wordFields['translation'];
+      $word->pronunciation = $wordFields['pronunciation'];
+      $word->image = $wordFields['image'];
+
+      $words[] = $word;
+
+    }
+
+    print '<script>';
+    print 'var flashcardWords = ' . json_encode($words);
+    print '</script>';
+
+  ?>
+
+  <?php
+
     $template = new \Frame\Template();
     $template->path = 'components/lesson/templates/';
     $template->name = 'lesson-section-header';
@@ -14,29 +38,36 @@
 
   ?>
 
-  <?php
+  <div class="lesson-section-body">
+    <button class="s10-start-exercise-btn flashcard-start">Show me the cards!</button>
+  </div>
 
-    foreach( $lessonFields['words'] as $wordId ) {
 
-      $wordPost = get_post( $wordId );
-      $wordFields = get_fields( $wordId );
 
-      print '<div class="flashcard">';
-        print '<div class="flashcard-up flashcard-active">';
-          print '<h3>' . $wordPost->post_title . '</h3>';
-          print '<h4>' . $wordFields['pronunciation'] . '</h4>';
-        print '</div>';
-        print '<div class="flashcard-down">';
-          print '<h3>' . $wordFields['translation'] . '</h3>';
-          print '<button class="flash-know">I GOT IT!</button>';
-          print '<button class="flash-know">I MISSED IT!</button>';
-        print '</div>';
-      print '</div>';
-
-    }
-
-    ?>
-
-    <button class="flashcard-reset">Reset Flashcards</button>
 
 </div>
+
+
+<!-- word template -->
+<template id="flashcard-template">
+  <div class="flashcard">
+
+    <div class="flashcard-up flashcard-active">
+      <h2 class="flashcard-word-display">{word}</h2>
+      <h3 class="flashcard-word-pronunciation">{pronunciation}</h3>
+    </div>
+
+    <div class="flashcard-down">
+
+      <button class="flashcard-reset">Reset Flashcard</button>
+      <h2 class="flashcard-word-translation">{word} = {translation}</h2>
+      <h3 class="flashcard-word-pronunciation">{pronunciation}</h3>
+
+      <div class="flashcard-controls">
+        <h3>Did you know this word?</h3>
+        <button class="s10-rating"><i class="fas fa-thumbs-down fa-2x"></i> <br /><span>Weak</span></button><button class="s10-rating"><i class="fas fa-thumbs-up fa-2x"></i> <br /><span>Strong</span></button>
+      </div>
+
+    </div>
+  </div>
+</template>

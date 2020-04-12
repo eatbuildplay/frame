@@ -6,8 +6,6 @@
 
     init: function() {
 
-      console.log( wordscanWords )
-
       $('.wordscan-start').on('click', wordscan.start)
       $( document ).on('click', '.wordscan-controls .s10-rating', wordscan.rating)
       $( document ).on('click', '.wordscan-controls .s10-restart', wordscan.restart)
@@ -100,12 +98,96 @@
    */
   var flashcard = {
 
+    wordIndex: 0,
+
     init: function() {
+
+      console.log('flashcard init')
+
+      $('.flashcard-start').on('click', flashcard.start)
+      $( document ).on('click', '.flashcard-up', flashcard.flip)
+      $( document ).on('click', '.flashcard-reset', flashcard.reset)
+      $( document ).on('click', '.s10-rating', flashcard.rating)
+
+    },
+
+    start: function() {
+
+      console.log('flashcard start')
+
+      // hide start
+      $('.flashcard-start').hide()
+      $('.lesson-section-flashcards .lesson-section-header').hide()
+
+      var header = $('.lesson-section-flashcards .lesson-section-header')
+      console.log( header )
+
+      flashcard.rating()
+
+    },
+
+    rating: function() {
+
+      // get word if any left
+      var newWordIndex = flashcard.wordIndex +1
+      var word = flashcardWords[ newWordIndex ]
+
+      console.log( word )
+
+      if( word == undefined ) {
+        flashcard.finish()
+        return;
+      }
+
+      // stash current wordIndex
+      flashcard.wordIndex = flashcard.wordIndex +1
+
+      // load image file from url
+      /*
+      if( word.image ) {
+        flashcard.imageLoad( word.image );
+      }
+      */
+
+      // get template
+      var template = $('#flashcard-template').html()
+
+      // replace tags with content data
+      //template = template.replace('{word}', word.word)
+      template = template.split('{word}').join(word.word)
+      template = template.split('{translation}').join(word.translation)
+      template = template.split('{pronunciation}').join(word.pronunciation)
+      //template = template.replace('{image}', word.image);
+
+      // place content
+      $('.lesson-section-flashcards .lesson-section-body').html( template )
+
+      // get the word as an element so we can make changes
+      var $wordEl = $('.flashcard');
+
+      // image handling
+      if( !word.image ) {
+        // remove missing image
+        $wordEl.find('img').remove()
+      }
+
+    },
+
+    flip: function() {
+
+      $(this).siblings('.flashcard-down').addClass('flashcard-active')
+      $(this).removeClass('flashcard-active')
+
+    },
+
+    reset: function() {
+
+      $('.flashcard-down').removeClass('flashcard-active')
+      $('.flashcard-up').addClass('flashcard-active')
 
     }
 
   }
-
   flashcard.init();
 
   /* Loose Functions */
@@ -124,32 +206,11 @@
 
   })
 
-  // flashcard click
-  $('.flashcard-up').on('click', function() {
-
-    console.log('flashcard flipped!')
-    $(this).siblings('.flashcard-down').addClass('flashcard-active')
-    $(this).removeClass('flashcard-active')
-
-  })
-
-  // flashcards reset
-  $('.flashcard-reset').on('click', function() {
-    $('.flashcard-down').removeClass('flashcard-active')
-    $('.flashcard-up').addClass('flashcard-active')
-  })
-
-  // flashcard answer
-  $('.flashcard button').on('click', function() {
-    console.log('selected button...')
-  })
-
-
   /*
    * Word selection
    */
    $('.word-selection-word button').on('click', function() {
-     console.log('selected word...')
+
    })
 
   // return to top button

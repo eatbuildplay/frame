@@ -150,23 +150,25 @@ button {
   display: none;
 }
 .flashcard {
-  display: inline-block;
-  width: 50%;
-  height: 250px;
   overflow: hidden;
-  background: #DE2026;
+  background: #272E39;
   box-sizing: border-box;
   padding: 15px;
   cursor: pointer;
+  border-radius: 10px;
+  color: #FFFFFF;
+  max-width: 700px;
 }
 .flashcard:hover {
-  background: #DE2026F5;
+  background: #272E39;
 }
 .flashcard h2 {
   font-size: 32px;
-  color: #424242;
+  color: #FFFFFF;
   font-weight: bold;
-
+}
+.flashcard-reset {
+  float: right;
 }
 
 .flashcard-up, .flashcard-down {
@@ -217,4 +219,13 @@ button {
     background: #209FBF;
   }
 
+}
+
+.lesson-section-flashcards {
+  overflow: hidden;
+}
+.flashcard-controls {
+
+  min-height: 150px;
+  white-space: nowrap;
 }
