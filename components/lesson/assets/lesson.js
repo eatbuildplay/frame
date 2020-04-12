@@ -11,6 +11,16 @@
       $('.wordscan-start').on('click', wordscan.start)
       $( document ).on('click', '.wordscan-controls .s10-rating', wordscan.rating)
       $( document ).on('click', '.wordscan-controls .s10-restart', wordscan.restart)
+      $( document ).on('click', '.wordscan-controls .s10-next-lesson', wordscan.nextExercise)
+
+    },
+
+    nextExercise: function() {
+
+      $('.lesson-single-tabs li').removeClass('active')
+      $('.lesson-single-tabs li.exercise-flashcards').addClass('active')
+      $('.lesson-section').hide()
+      $('.lesson-section-flashcards').show()
 
     },
 

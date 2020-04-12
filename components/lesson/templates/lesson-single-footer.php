@@ -12,7 +12,7 @@
     <p>Congrats, you have completed this first exercise in the lesson.</p>
 
     <div class="wordscan-controls">
-      <button class="s10-restart"><i class="fas fa-redo-alt fa-2x"></i> <br /><span>Restart Exercise</span></button><button><i class="fas fa-hand-point-right fa-2x"></i> <br /><span>Next Exercise</span></button>
+      <button class="s10-restart"><i class="fas fa-redo-alt fa-2x"></i> <br /><span>Restart Exercise</span></button><button class="s10-next-lesson"><i class="fas fa-hand-point-right fa-2x"></i> <br /><span>Next Exercise</span></button>
     </div>
 
   </div>
