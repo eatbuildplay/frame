@@ -4,16 +4,19 @@
 
     console.log('loadPostList called...')
 
+    var frameLoaderKey = $('.frame-post-list-canvas').data('frame-loader-key')
     var filterPropertyType = $('#filter_topic').val()
+
+    console.log( window[frameLoaderKey]['postListLoadHook'] )
 
     // do ajax call to get new filtered posts
     data = {
-      action: 'frame_post_list_load',
+      action: window[frameLoaderKey]['postListLoadHook'],
       filters: {
         propertyType: filterPropertyType
       }
     }
-    $.post( frame.ajaxurl, data, function( response ) {
+    $.post( window[frameLoaderKey].ajaxurl, data, function( response ) {
 
       response = JSON.parse( response )
 
@@ -30,7 +33,11 @@
   }
 
   // init load
-  loadPostList();
+  var postListCanvas = $('.frame-post-list-canvas')
+  console.log(postListCanvas)
+  if( postListCanvas.length ) {
+    loadPostList();
+  }
 
   $('#filter_topic').on('change', function() {
     loadPostList();

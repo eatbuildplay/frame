@@ -4,6 +4,9 @@ namespace Frame;
 
 class PostList {
 
+  public $frameLoaderKey = 'frame_post_list_load';
+  public $loadHook = 'frame_post_list_load';
+
   public function __construct() {
 
     $this->initShortcode();
@@ -19,12 +22,15 @@ class PostList {
 
   public function initShortcode() {
     require_once( FRAME_PATH . 'src/post_lists/PostListShortcode.php' );
-    new PostListShortcode();
+    new PostListShortcode( $this->frameLoaderKey );
   }
 
   public function initAjaxHooks() {
-    add_action('wp_ajax_frame_post_list_load', [$this, 'ajaxListLoad']);
-    add_action('wp_ajax_nopriv_frame_post_list_load', [$this, 'ajaxListLoad']);
+
+    // setup ajax hooks
+    add_action('wp_ajax_' . $this->loadHook, [$this, 'ajaxListLoad']);
+    add_action('wp_ajax_nopriv_' . $this->loadHook, [$this, 'ajaxListLoad']);
+
   }
 
   public function fetchPosts( $metaquery, $taxquery ) {
@@ -35,12 +41,11 @@ class PostList {
         'post_type'   => $postType,
         'meta_query'  => $metaquery,
         'tax_query'   => $taxquery,
-        'meta_key'    => 'display_order',
-        'orderby'     => 'meta_value_num',
-        'order'       => 'ASC'
+        //'meta_key'    => 'display_order',
+        //'orderby'     => 'meta_value_num',
+        //'order'       => 'ASC'
       )
     );
-
     return $posts;
 
   }
@@ -65,9 +70,10 @@ class PostList {
 
     wp_localize_script(
       'frame-post-list-js',
-      'frame',
+      $this->frameLoaderKey,
       [
-        'ajaxurl' => admin_url( 'admin-ajax.php' )
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'postListLoadHook' => $this->loadHook
       ]
     );
 

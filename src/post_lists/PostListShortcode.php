@@ -6,7 +6,8 @@ class PostListShortcode {
 
   public $tag = 'frame-post-list';
 
-  public function __construct() {
+  public function __construct( $frameLoaderKey ) {
+    $this->frameLoaderKey = $frameLoaderKey;
     add_action('init', array( $this, 'init'));
   }
 
@@ -17,11 +18,12 @@ class PostListShortcode {
   public function doShortcode( $atts ) {
 
     $atts = shortcode_atts( array(), $atts, $this->tag );
-
     $template = new Template();
     $template->path = 'src/post_lists/templates/';
     $template->name = 'post-list-canvas';
-    $template->data = array();
+    $template->data = array(
+      'frameLoaderKey' => $this->frameLoaderKey
+    );
     return $template->get();
 
   }
