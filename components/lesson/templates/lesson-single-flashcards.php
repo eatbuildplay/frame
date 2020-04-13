@@ -65,7 +65,7 @@
 
       <div class="flashcard-controls">
         <h3>Did you know this word?</h3>
-        <button class="s10-rating"><i class="fas fa-thumbs-down fa-2x"></i> <br /><span>Weak</span></button><button class="s10-rating"><i class="fas fa-thumbs-up fa-2x"></i> <br /><span>Strong</span></button>
+        <button class="s10-rating s10-rating-flashcard"><i class="fas fa-thumbs-down fa-2x"></i> <br /><span>Weak</span></button><button class="s10-rating s10-rating-flashcard"><i class="fas fa-thumbs-up fa-2x"></i> <br /><span>Strong</span></button>
       </div>
 
     </div>

@@ -17,3 +17,15 @@
 
   </div>
 </template>
+
+<template id="flashcard-finish">
+  <div class="flashcard-finish">
+    <h2>Flashcard Exercise Completed!</h2>
+    <p>Congrats, you have completed the second exercise in this lesson. Ready to continue to the final exercise?</p>
+
+    <div class="flashcard-controls">
+      <button class="s10-restart s10-flashcard-restart"><i class="fas fa-redo-alt fa-2x"></i> <br /><span>Restart Exercise</span></button><button class="s10-next-lesson s10-flashcard-next-lesson"><i class="fas fa-hand-point-right fa-2x"></i> <br /><span>Next Exercise</span></button>
+    </div>
+
+  </div>
+</template>

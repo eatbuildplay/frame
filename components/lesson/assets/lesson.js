@@ -107,8 +107,25 @@
       $('.flashcard-start').on('click', flashcard.start)
       $( document ).on('click', '.flashcard-up', flashcard.flip)
       $( document ).on('click', '.flashcard-reset', flashcard.reset)
-      $( document ).on('click', '.s10-rating', flashcard.rating)
+      $( document ).on('click', '.flashcard-controls .s10-rating', flashcard.rating);
+      $( document ).on('click', '.flashcard-controls .s10-restart', flashcard.restart);
+      $( document ).on('click', '.flashcard-controls .s10-next-lesson', flashcard.nextExercise)
 
+
+    },
+
+    nextExercise: function() {
+
+      $('.lesson-single-tabs li').removeClass('active')
+      $('.lesson-single-tabs li.exercise-word-selection').addClass('active')
+      $('.lesson-section').hide()
+      $('.lesson-section-word-selection').show()
+
+    },
+
+    restart: function() {
+      flashcard.wordIndex = 0;
+      flashcard.start();
     },
 
     start: function() {
@@ -185,6 +202,11 @@
       $('.flashcard-down').removeClass('flashcard-active')
       $('.flashcard-up').addClass('flashcard-active')
 
+    },
+
+    finish: function() {
+      var template = $('#flashcard-finish').html()
+      $('.lesson-section-flashcards .lesson-section-body').html( template )
     }
 
   }
