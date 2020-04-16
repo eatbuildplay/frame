@@ -1,3 +1,5 @@
+<div class="lesson-section lesson-section-word-selection">
+
 <?php
 
 // put all translations into array
@@ -29,16 +31,12 @@ function fetchSelectionOptions( $allTranslations, $correctTranslation ) {
   // randomize the options
   shuffle( $options );
 
-  foreach( $options as $option ) {
-    print '<button>' . $option. '</button>';
-  }
+  // return options ordered for display
+  return $options;
 
 }
 
 ?>
-
-
-<div class="lesson-section lesson-section-word-selection">
 
   <?php
 
@@ -56,22 +54,43 @@ function fetchSelectionOptions( $allTranslations, $correctTranslation ) {
 
   <?php
 
+    $words = [];
     foreach( $lessonFields['words'] as $wordId ) {
+
+      $word = new stdClass;
 
       $wordPost = get_post( $wordId );
       $wordFields = get_fields( $wordId );
 
-      print '<div class="word-selection-word">';
-      print '<h3>' . $wordPost->post_title . '</h3>';
-      print '<h4>' . $wordFields['pronunciation'] . '</h4>';
+      $word->word = $wordPost->post_title;
+      $word->pronunciation = $wordFields['pronunciation'];
+      $word->translation = $wordFields['translation'];
+      $word->options = fetchSelectionOptions( $allTranslations, $wordFields['translation'] );
 
-      print '<h2>Choose the word:</h2>';
-      fetchSelectionOptions( $allTranslations, $wordFields['translation'] );
-
-      print '</div>';
+      $words[] = $word;
 
     }
 
-    ?>
+    print '<script>';
+    print 'var wordSelectionWords = ' . json_encode($words);
+    print '</script>';
+
+?>
+
+  <div class="lesson-section-body">
+    <button class="s10-start-exercise-btn word-selection-start">Test my knowledge!</button>
+  </div>
 
 </div>
+
+<!-- word template -->
+<template id="word-selection-template">
+  <div class="word-selection">
+
+    <img src="{image}" />
+    <h2 class="word-selection-word-display">{word}</h2>
+    <h3 class="word-selection-word-pronunciation">{pronunciation}</h3>
+    <ul>{options}</ul>
+
+  </div>
+</template>

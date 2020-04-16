@@ -102,8 +102,6 @@
 
     init: function() {
 
-      console.log('flashcard init')
-
       $('.flashcard-start').on('click', flashcard.start)
       $( document ).on('click', '.flashcard-up', flashcard.flip)
       $( document ).on('click', '.flashcard-reset', flashcard.reset)
@@ -130,15 +128,11 @@
 
     start: function() {
 
-      console.log('flashcard start')
-
       // hide start
       $('.flashcard-start').hide()
       $('.lesson-section-flashcards .lesson-section-header').hide()
 
       var header = $('.lesson-section-flashcards .lesson-section-header')
-      console.log( header )
-
       flashcard.rating()
 
     },
@@ -148,8 +142,6 @@
       // get word if any left
       var newWordIndex = flashcard.wordIndex +1
       var word = flashcardWords[ newWordIndex ]
-
-      console.log( word )
 
       if( word == undefined ) {
         flashcard.finish()
@@ -211,6 +203,108 @@
 
   }
   flashcard.init();
+
+
+  /*
+   *
+   * Word Selection
+   *
+   */
+  var wordSelection = {
+
+    wordIndex: 0,
+
+    init: function() {
+
+      $('.word-selection-start').on('click', wordSelection.start);
+      $( document ).on('click', '.word-selection-controls .s10-rating', wordSelection.rating);
+      $( document ).on('click', '.word-selection-controls .s10-restart', wordSelection.restart);
+      $( document ).on('click', '.word-selection-controls .s10-next-lesson', wordSelection.nextExercise);
+
+    },
+
+    nextExercise: function() {
+
+      $('.lesson-single-tabs li').removeClass('active')
+      $('.lesson-single-tabs li.exercise-word-selection').addClass('active')
+      $('.lesson-section').hide()
+      $('.lesson-section-word-selection').show()
+
+    },
+
+    restart: function() {
+      wordSelection.wordIndex = 0;
+      wordSelection.start();
+    },
+
+    start: function() {
+
+      // hide start
+      $('.word-selection-start').hide()
+      $('.lesson-section-word-selection .lesson-section-header').hide()
+
+      var header = $('.lesson-section-word-selection .lesson-section-header')
+      wordSelection.rating()
+
+    },
+
+    rating: function() {
+
+      // get word if any left
+      var newWordIndex = wordSelection.wordIndex +1
+      var word = wordSelectionWords[ newWordIndex ]
+
+      console.log( word )
+
+      if( word == undefined ) {
+        wordSelection.finish()
+        return;
+      }
+
+      // stash current wordIndex
+      wordSelection.wordIndex = wordSelection.wordIndex +1
+
+      // get template
+      var template = $('#word-selection-template').html()
+
+      // replace tags with content data
+      //template = template.replace('{word}', word.word)
+      template = template.split('{word}').join(word.word)
+      template = template.split('{translation}').join(word.translation)
+      template = template.split('{pronunciation}').join(word.pronunciation)
+      //template = template.replace('{image}', word.image);
+
+      var options = '';
+      word.options.forEach( function( option, index ) {
+        options += '<li>';
+        options += option;
+        options += '</li>';
+      })
+      template = template.replace('{options}', options);
+
+      // place content
+      $('.lesson-section-word-selection .lesson-section-body').html( template )
+
+      // get the word as an element so we can make changes
+      var $wordEl = $('.word-selection');
+
+      // image handling
+      if( !word.image ) {
+        // remove missing image
+        $wordEl.find('img').remove()
+      }
+
+    },
+
+    finish: function() {
+      var template = $('#word-selection-finish').html()
+      $('.lesson-section-word-selection .lesson-section-body').html( template )
+    }
+
+  }
+  wordSelection.init();
+
+  /*
 
   /* Loose Functions */
 
