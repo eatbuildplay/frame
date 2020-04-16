@@ -229,3 +229,25 @@ button {
   min-height: 150px;
   white-space: nowrap;
 }
+
+/*
+ * Word selection
+ */
+.word-selection ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.word-selection li {
+  cursor: pointer;
+  margin: 0;
+  padding: 25px 40px;
+  background: #F3F3F3;
+  font-size: 20px;
+}
+.word-selection li:hover {
+  background: #D3D3D3;
+}
+.word-selection li.selected {
+  background: #C3C3C3;
+}

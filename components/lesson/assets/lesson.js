@@ -220,6 +220,26 @@
       $( document ).on('click', '.word-selection-controls .s10-rating', wordSelection.rating);
       $( document ).on('click', '.word-selection-controls .s10-restart', wordSelection.restart);
       $( document ).on('click', '.word-selection-controls .s10-next-lesson', wordSelection.nextExercise);
+      $( document ).on('click', '.word-selection li', wordSelection.select);
+      $( document ).on('click', '.s10-word-selection-next', wordSelection.rating) ;
+
+    },
+
+    select: function() {
+
+      $(this).addClass('selected')
+
+      // remove click events or lock
+
+
+      // check if it's correct
+
+
+      // show results
+      var message = 'Not this time, try again.';
+      var template = $('#word-selection-result-template').html();
+      template = template.replace('{message}', message);
+      $('.lesson-section-body').append( template );
 
     },
 
@@ -321,13 +341,6 @@
     $('.lesson-section-' + sectionName).show()
 
   })
-
-  /*
-   * Word selection
-   */
-   $('.word-selection-word button').on('click', function() {
-
-   })
 
   // return to top button
   $('.s10-to-top').on('click', function() {
