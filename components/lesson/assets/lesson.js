@@ -220,7 +220,7 @@
       $( document ).on('click', '.word-selection-controls .s10-rating', wordSelection.rating);
       $( document ).on('click', '.word-selection-controls .s10-restart', wordSelection.restart);
       $( document ).on('click', '.word-selection-controls .s10-next-lesson', wordSelection.nextExercise);
-      $( document ).on('click', '.word-selection li', wordSelection.select);
+      $( document ).on('click', '.word-selection li.selectable', wordSelection.select);
       $( document ).on('click', '.s10-word-selection-next', wordSelection.rating) ;
 
     },
@@ -230,13 +230,23 @@
       $(this).addClass('selected')
 
       // remove click events or lock
-
+      $('.word-selection ul li').removeClass('selectable');
 
       // check if it's correct
-
+      var word = wordSelectionWords[ wordSelection.wordIndex ];
+      var wordSelected = $(this).data('word');
+      var isCorrect = false;
+      if( word.translation == wordSelected ) {
+        isCorrect = true;
+      }
 
       // show results
-      var message = 'Not this time, try again.';
+      if( isCorrect ) {
+        var message = 'Nice job, you got it right!';
+      } else {
+        var message = 'Not this time, sorry.';
+      }
+
       var template = $('#word-selection-result-template').html();
       template = template.replace('{message}', message);
       $('.lesson-section-body').append( template );
@@ -296,7 +306,7 @@
 
       var options = '';
       word.options.forEach( function( option, index ) {
-        options += '<li>';
+        options += '<li class="selectable" data-word="' + option + '">';
         options += option;
         options += '</li>';
       })

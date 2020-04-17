@@ -239,14 +239,14 @@ button {
   padding: 0;
 }
 .word-selection li {
-  cursor: pointer;
   margin: 0;
   padding: 25px 40px;
   background: #F3F3F3;
   font-size: 20px;
 }
-.word-selection li:hover {
+.word-selection li.selectable:hover {
   background: #D3D3D3;
+  cursor: pointer;
 }
 .word-selection li.selected {
   background: #C3C3C3;
