@@ -22,7 +22,12 @@ class PostList {
 
   public function initShortcode() {
     require_once( FRAME_PATH . 'src/post_lists/PostListShortcode.php' );
-    new PostListShortcode( $this->frameLoaderKey );
+    new PostListShortcode( $this->frameLoaderKey, $this->getShortcodeTag() );
+  }
+
+  // enable override shortcode tag
+  public function getShortcodeTag() {
+    return false;
   }
 
   public function initAjaxHooks() {
@@ -57,6 +62,7 @@ class PostList {
       'orderby'     => $order['orderby'],
       'order'       => $order['order']
     );
+
     if( $this->setMetakey() ) {
       $queryArgs['meta_key'] = $this->setMetakey();
     }
@@ -128,6 +134,7 @@ class PostList {
     $template->name = 'post-list-item';
 
     // load list template
+    $content = '';
     if( !empty( $posts )) :
       foreach( $posts as $post ) :
         $template->data = array(

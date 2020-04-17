@@ -6,7 +6,10 @@ class PostListShortcode {
 
   public $tag = 'frame-post-list';
 
-  public function __construct( $frameLoaderKey ) {
+  public function __construct( $frameLoaderKey, $tag = false ) {
+    if( $tag ) {
+      $this->tag = $tag;
+    }
     $this->frameLoaderKey = $frameLoaderKey;
     add_action('init', array( $this, 'init'));
   }
