@@ -10,13 +10,12 @@ class CourseLessonPostList extends \Frame\PostList {
     parent::__construct();
   }
 
-  public function initShortcode() {
-    require_once( FRAME_PATH . 'components/course/src/CourseLessonPostListShortcode.php' );
-    new CourseLessonPostListShortcode( $this->frameLoaderKey );
-  }
-
   public function getPostType() {
     return 'lesson';
+  }
+
+  public function getShortcodeTag() {
+    return 'course-lesson-post-list';
   }
 
   public function metaQuery( $postId ) {
@@ -31,6 +30,17 @@ class CourseLessonPostList extends \Frame\PostList {
 
     return $metaquery;
 
+  }
+
+  public function order() {
+    return [
+      'orderby' => 'meta_value_num',
+      'order'   => 'ASC'
+    ];
+  }
+
+  public function setMetakey() {
+    return 'display_order';
   }
 
 }

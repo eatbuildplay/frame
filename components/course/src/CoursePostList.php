@@ -11,6 +11,10 @@ class CoursePostList extends \Frame\PostList {
     parent::__construct();
   }
 
+  public function getShortcodeTag() {
+    return 'course-post-list';
+  }
+
   public function order() {
     return [
       'orderby' => 'meta_value_num',

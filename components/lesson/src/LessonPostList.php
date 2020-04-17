@@ -19,4 +19,15 @@ class LessonPostList extends \Frame\PostList {
     return 'lesson-post-list';
   }
 
+  public function order() {
+    return [
+      'orderby' => 'meta_value_num',
+      'order'   => 'ASC'
+    ];
+  }
+
+  public function setMetakey() {
+    return 'display_order';
+  }
+
 }
