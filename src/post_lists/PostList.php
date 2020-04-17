@@ -33,19 +33,34 @@ class PostList {
 
   }
 
+  public function order() {
+    return [
+      'orderBy' => 'title',
+      'order'   => 'ASC'
+    ];
+  }
+
+  public function setMetakey() {
+    return false;
+  }
+
   public function fetchPosts( $metaquery, $taxquery ) {
 
+    $order = $this->order();
+
     $postType = $this->getPostType();
-    $posts = get_posts( array(
-        'numberposts' => -1,
-        'post_type'   => $postType,
-        'meta_query'  => $metaquery,
-        'tax_query'   => $taxquery,
-        //'meta_key'    => 'display_order',
-        //'orderby'     => 'meta_value_num',
-        //'order'       => 'ASC'
-      )
+    $queryArgs = array(
+      'numberposts' => -1,
+      'post_type'   => $postType,
+      'meta_query'  => $metaquery,
+      'tax_query'   => $taxquery,
+      'orderby'     => $order['orderby'],
+      'order'       => $order['order']
     );
+    if( $this->setMetakey() ) {
+      $queryArgs['meta_key'] = $this->setMetakey();
+    }
+    $posts = get_posts( $queryArgs );
     return $posts;
 
   }
@@ -68,25 +83,40 @@ class PostList {
       true
     );
 
+    /*
+     * Localize JS including post ID
+     */
+    global $post;
     wp_localize_script(
       'frame-post-list-js',
       $this->frameLoaderKey,
       [
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
-        'postListLoadHook' => $this->loadHook
+        'postListLoadHook' => $this->loadHook,
+        'postId' => $post->ID
       ]
     );
 
   }
 
+  public function metaQuery( $postId ) {
+    return [];
+  }
+
   public function ajaxListLoad() {
 
     // get filter values
-    $filters = $_POST['filters'];
+    if( isset( $_POST['filters'] )) {
+      $filters = $_POST['filters'];
+    }
+
+    // get post id
+    if( isset( $_POST['postId'] )) {
+      $postId = $_POST['postId'];
+    }
 
     // setup metaquery
-    $metaquery = [];
-    $metaquery = [];
+    $metaquery = $this->metaQuery( $postId );
     $taxquery = [];
 
     // fetch posts

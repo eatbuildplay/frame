@@ -25,7 +25,7 @@ class FR_Plugin {
 
     require_once( FRAME_PATH . 'src/Template.php' );
     require_once( FRAME_PATH . 'src/post_lists/PostList.php' );
-
+    
     require_once( FRAME_PATH . 'components/course/src/Course.php' );
     new \Frame\Course\Course();
 

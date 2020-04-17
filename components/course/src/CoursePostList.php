@@ -11,4 +11,15 @@ class CoursePostList extends \Frame\PostList {
     parent::__construct();
   }
 
+  public function order() {
+    return [
+      'orderby' => 'meta_value_num',
+      'order'   => 'ASC'
+    ];
+  }
+
+  public function setMetakey() {
+    return 'display_order';
+  }
+
 }

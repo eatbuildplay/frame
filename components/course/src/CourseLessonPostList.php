@@ -19,4 +19,18 @@ class CourseLessonPostList extends \Frame\PostList {
     return 'lesson';
   }
 
+  public function metaQuery( $postId ) {
+
+    $metaquery = [
+      [
+        'key'     => 'course',
+        'value'   => $postId,
+        'compare' => '='
+      ]
+    ];
+
+    return $metaquery;
+
+  }
+
 }

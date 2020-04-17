@@ -12,9 +12,8 @@
     // do ajax call to get new filtered posts
     data = {
       action: window[frameLoaderKey]['postListLoadHook'],
-      filters: {
-        propertyType: filterPropertyType
-      }
+      filters: {},
+      postId: window[frameLoaderKey]['postId']
     }
     $.post( window[frameLoaderKey].ajaxurl, data, function( response ) {
 
