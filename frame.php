@@ -24,8 +24,9 @@ class FR_Plugin {
   public function __construct() {
 
     require_once( FRAME_PATH . 'src/Template.php' );
+    require_once( FRAME_PATH . 'src/Shortcode.php' );
     require_once( FRAME_PATH . 'src/post_lists/PostList.php' );
-    
+
     require_once( FRAME_PATH . 'components/course/src/Course.php' );
     new \Frame\Course\Course();
 
@@ -34,6 +35,9 @@ class FR_Plugin {
 
     require_once( FRAME_PATH . 'components/student/src/Student.php' );
     new \Frame\Student\Student();
+
+    require_once( FRAME_PATH . 'components/register/src/Register.php' );
+    new \Frame\Register\Register();
 
   }
 
