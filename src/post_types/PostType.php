@@ -6,28 +6,38 @@ class PostType {
 
   public $settings = [];
 
-  public getKey() {
+  public function getKey() {
     return 'frame';
   }
 
-  public getNameSingular() {
-    return 'Frame';
+  public function getNameSingular() {
+    $name = str_replace('_',' ',$this->getKey());
+    return ucwords( $name );
   }
 
-  public getNamePlural() {
+  public function getNamePlural() {
     return $this->getNameSingular() . 's';
   }
 
-  public getSettings() {
+  public function getSettings() {
     $args = $this->getArguments();
-    $args['labels'] => $this->getLabels();
+    $args['labels'] = $this->getLabels();
     return $args;
   }
 
-  public register() {
+  public function register() {
 
     $key = $this->getKey();
     $settings = $this->getSettings();
+
+    /*
+    print '<pre>';
+    var_dump( $key );
+    var_dump( $settings );
+    print '</pre>';
+    die();
+    */
+
     register_post_type( $key, $settings );
 
   }
@@ -61,10 +71,10 @@ class PostType {
   public function getLabels() {
 
     return [
-  		'name'                  => _x( 'Plans', 'Post Type General Name', 'frame' ),
-  		'singular_name'         => _x( 'Plan', 'Post Type Singular Name', 'frame' ),
-  		'menu_name'             => __( 'Plans', 'frame' ),
-  		'name_admin_bar'        => __( 'Plans', 'frame' ),
+  		'name'                  => _x( $this->getNamePlural(), 'Post Type General Name', 'frame' ),
+  		'singular_name'         => _x( $this->getNameSingular(), 'Post Type Singular Name', 'frame' ),
+  		'menu_name'             => __( $this->getNamePlural(), 'frame' ),
+  		'name_admin_bar'        => __( $this->getNamePlural(), 'frame' ),
   		'archives'              => __( 'Item Archives', 'frame' ),
   		'attributes'            => __( 'Item Attributes', 'frame' ),
   		'parent_item_colon'     => __( 'Parent Item:', 'frame' ),

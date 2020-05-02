@@ -19,13 +19,14 @@ define( 'FRAME_PATH', plugin_dir_path( __FILE__ ) );
 define( 'FRAME_URL', plugin_dir_url( __FILE__ ) );
 define( 'FRAME_VERSION', '1.0.0' );
 
-class FR_Plugin {
+class Plugin {
 
   public function __construct() {
 
     require_once( FRAME_PATH . 'src/Template.php' );
     require_once( FRAME_PATH . 'src/Shortcode.php' );
     require_once( FRAME_PATH . 'src/post_lists/PostList.php' );
+    require_once( FRAME_PATH . 'src/post_types/PostType.php' );
 
     require_once( FRAME_PATH . 'components/course/src/Course.php' );
     new \Frame\Course\Course();
@@ -39,8 +40,11 @@ class FR_Plugin {
     require_once( FRAME_PATH . 'components/register/src/Register.php' );
     new \Frame\Register\Register();
 
+    require_once( FRAME_PATH . 'components/exam/src/Exam.php' );
+    new \Frame\Exam\Exam();
+
   }
 
 }
 
-new FR_Plugin();
+new Plugin();
