@@ -55,11 +55,11 @@ class PostListWidget extends \Elementor\Widget_Base {
 		);
 
     $this->add_control(
-			'dynamic_option',
+			'post_type',
 			[
-				'label' => __( 'Dynamic Option', 'frame' ),
-				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'input_type' => 'textarea'
+				'label' => __( 'Post Type', 'frame' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'input_type' => 'text'
 			]
 		);
 
@@ -70,9 +70,37 @@ class PostListWidget extends \Elementor\Widget_Base {
   protected function render() {
 
 		$settings = $this->get_settings_for_display();
-    $templatePost = get_post( $settings['item_template'] );
-    $itemContent = $templatePost->post_content;
-    print $itemContent;
+
+		$postType = $settings['post_type'];
+
+		$posts = get_posts([
+			'posts_per_page' => -1,
+      'post_type' => $postType
+		]);
+
+
+
+		if( !empty( $posts )) :
+
+			global $post;
+			$originalPost = $post;
+
+			foreach( $posts as $postItem ) {
+
+				print '<div class="post-list-item">';
+				$templatePost = get_post( $settings['item_template'] );
+
+				$post = $postItem;
+				setup_postdata($post);
+				print \ElementorPro\Plugin::elementor()->frontend->get_builder_content_for_display( $templatePost->ID );
+				print '</div>';
+
+			}
+
+			// reset post so rest of page works normally
+			$post = $originalPost;
+
+		endif;
 
     /*
     $template = new Template();
