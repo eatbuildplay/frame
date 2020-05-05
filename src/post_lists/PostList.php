@@ -9,10 +9,20 @@ class PostList {
 
   public function __construct() {
 
+    add_action( 'elementor/widgets/widgets_registered', [ $this, 'initWidgets' ] );
+
     $this->initShortcode();
     $this->initAjaxHooks();
 
     add_action('wp_enqueue_scripts', [$this, 'addScripts']);
+
+  }
+
+  public function initWidgets() {
+
+    require_once( FRAME_PATH . 'src/post_lists/elementor/PostListWidget.php' );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PostListWidget() );
+
 
   }
 
