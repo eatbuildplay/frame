@@ -18,8 +18,24 @@ class Exam {
     require_once( FRAME_PATH . 'components/exam/src/models/QuestionList.php' );
     require_once( FRAME_PATH . 'components/exam/src/models/QuestionOption.php' );
     require_once( FRAME_PATH . 'components/exam/src/models/QuestionOptionList.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/QuestionAnswer.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/QuestionAnswerList.php' );
+
 
     add_action('wp_enqueue_scripts', array( $this, 'scripts' ));
+
+    add_action( 'wp_ajax_frame_exam_record_answer', array( $this, 'jxRecordAnswer'));
+
+  }
+
+  public function jxRecordAnswer() {
+
+    $response = array(
+      'message' => 'This response message will become vailable in the return in your JS ajax call'
+    );
+    print json_encode( $response );
+
+    wp_die();
 
   }
 
