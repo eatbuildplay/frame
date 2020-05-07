@@ -19,6 +19,26 @@ class Exam {
     require_once( FRAME_PATH . 'components/exam/src/models/QuestionOption.php' );
     require_once( FRAME_PATH . 'components/exam/src/models/QuestionOptionList.php' );
 
+    add_action('wp_enqueue_scripts', array( $this, 'scripts' ));
+
+  }
+
+  public function scripts() {
+
+    wp_enqueue_script(
+      'exam-js',
+      FRAME_URL . 'components/exam/assets/exam.js',
+      array( 'jquery' ),
+      '1.0.0',
+      true
+    );
+
+    wp_enqueue_style(
+      'exam-css',
+      FRAME_URL . 'components/exam/assets/exam.css',
+      array(),
+      true
+    );
 
   }
 
