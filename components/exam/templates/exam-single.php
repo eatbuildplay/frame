@@ -1,7 +1,7 @@
 <?php
 
 print '<pre>';
-var_dump( $examFields );
+var_dump( $exam );
 print '</pre>';
 
 ?>

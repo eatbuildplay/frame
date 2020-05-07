@@ -11,6 +11,14 @@ class Exam {
     require_once( FRAME_PATH . 'components/exam/src/ExamSingleShortcode.php' );
     new ExamSingleShortcode();
 
+    // load models
+    require_once( FRAME_PATH . 'components/exam/src/models/Exam.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/ExamList.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/Question.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/QuestionList.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/QuestionOption.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/QuestionOptionList.php' );
+
 
   }
 

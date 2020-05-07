@@ -2,19 +2,22 @@
 
 namespace Frame\Exam\Model;
 
-class Exam {
+class Question {
 
   public $title;
-  public $questions;
+  public $text;
+  public $type;
+  public $options;
 
   public static function load( $post ) {
 
-    $obj = new Exam;
+    $obj = new Question;
     $obj->title = $post->post_title;
 
     $fields = get_fields($post);
+    $obj->type = $fields['type'];
 
-    $obj->questions = QuestionList::load( $fields['questions'] );
+    $obj->options = QuestionOptionList::load( $fields['options'] );
 
     return $obj;
 
