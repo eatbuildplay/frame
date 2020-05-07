@@ -8,6 +8,10 @@ class Exam {
 
     add_action('init', [$this, 'registerPostTypes']);
 
+    require_once( FRAME_PATH . 'components/exam/src/ExamSingleShortcode.php' );
+    new ExamSingleShortcode();
+
+
   }
 
   public function registerPostTypes() {
