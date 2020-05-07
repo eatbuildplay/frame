@@ -30,8 +30,24 @@ class Exam {
 
   public function jxRecordAnswer() {
 
+    // record answer
+    $questionAnswer = new Model\QuestionAnswer();
+    $questionAnswer->question = $_POST['questionId'];
+    $questionAnswer->questionOption = $_POST['questionOptionId'];
+    $questionAnswer->save();
+
+    // do marking
+    $isCorrect = false;
+    $questionPost = get_post( $questionAnswer->question );
+    $question = Model\Question::load( $questionPost );
+    if( $questionAnswer->questionOption == $question->correct->id ) {
+      $isCorrect = true;
+    }
+
     $response = array(
-      'message' => 'This response message will become vailable in the return in your JS ajax call'
+      'isCorrect' => $isCorrect,
+      'question' => $question,
+      'message' => 'Your answer was marked.'
     );
     print json_encode( $response );
 

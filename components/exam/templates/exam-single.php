@@ -19,7 +19,10 @@ print '</pre>';
     <h3>Select your answer</h3>
     <ul class="selectable">
       <?php foreach( $question->options as $option ) : ?>
-        <li><?php print $option->title; ?></li>
+        <li
+          data-question-id="<?php print $question->id; ?>"
+          data-question-option-id="<?php print $option->id; ?>">
+            <?php print $option->title; ?></li>
       <?php endforeach; ?>
     </ul>
   </div>

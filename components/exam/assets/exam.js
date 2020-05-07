@@ -17,8 +17,8 @@ var Exam = {
       $(this).parent('ul').removeClass('selectable');
 
       // record the answer
-      var $questionId = 1;
-      var $questionOptionId = 15;
+      var $questionId = $(this).data('question-id');
+      var $questionOptionId = $(this).data('question-option-id');
       Exam.recordAnswer( $questionId, $questionOptionId );
 
     })
@@ -36,6 +36,12 @@ var Exam = {
 
        response = JSON.parse(response);
        console.log( response )
+
+       if(response.isCorrect) {
+
+       } else {
+         
+       }
 
     });
 
