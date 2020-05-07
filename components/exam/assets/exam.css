@@ -22,3 +22,13 @@
 .question li.selected {
   background: #666;
 }
+
+.question.focus {
+  background: #222;
+}
+.question li.selected.correct {
+  background: green;
+}
+.question li.selected.incorrect {
+  background: red;
+}

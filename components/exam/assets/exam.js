@@ -35,12 +35,18 @@ var Exam = {
     $.post( frame_post_list_load.ajaxurl, data, function( response ) {
 
        response = JSON.parse(response);
-       console.log( response )
+       console.log( response );
+
+       // add focus on answered question
+       var $questionEl = $('.question-' + response.question.id);
+       $questionEl.addClass('focus');
+
+       var $selectedOption = $questionEl.find('li.selected');
 
        if(response.isCorrect) {
-
+         $selectedOption.addClass('correct');
        } else {
-         
+         $selectedOption.addClass('incorrect');
        }
 
     });
