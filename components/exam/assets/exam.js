@@ -11,14 +11,6 @@ var Exam = {
     currentQuestion: {
       index: 0,
       question: false
-    },
-    nextQuestion: {
-      index: 1,
-      question: false
-    },
-    prevQuestion: {
-      index: false,
-      question: false
     }
   },
 
@@ -26,7 +18,46 @@ var Exam = {
 
     Exam.selectQuestionOption();
     Exam.examLoad();
+    Exam.next();
 
+  },
+
+  questionCount: function() {
+    return Exam.questions.length;
+  },
+
+  end: function() {
+    console.log('welcome to end');
+  },
+
+  showLastQuestion: function() {
+    $('button.exam-next').html('Finish Exam');
+  },
+
+  next: function() {
+
+    $(document).on('click', '.exam-next', function() {
+
+      var $nextQuestionIndex = Exam.state.currentQuestion.index +1;
+      var $question = Exam.questions[ $nextQuestionIndex ];
+
+      // end is next
+      if( Exam.questionCount() == $nextQuestionIndex +1 ) {
+        Exam.showLastQuestion();
+      }
+
+      // is end
+      if( !$question ) {
+        Exam.end();
+        return;
+      }
+
+      var $questionNumber = $nextQuestionIndex +1;
+      Exam.questionShow( $question, $questionNumber );
+      Exam.state.currentQuestion.index = $nextQuestionIndex;
+      Exam.state.currentQuestion.question = $question;
+
+    });
 
   },
 
@@ -42,20 +73,19 @@ var Exam = {
       Exam.exam = response.exam;
       Exam.questions = response.exam.questions;
 
+      // Show question
       // fire exam loaded event here
-      // Exam.questionLoad();
-      Exam.questionShow();
-
+      var $question = Exam.questions[ 0 ];
+      var $questionNumber = 1;
+      Exam.questionShow( $question, $questionNumber );
+      Exam.state.currentQuestion.index = 0;
+      Exam.state.currentQuestion.question = $question;
 
     });
 
   },
 
-  questionShow: function() {
-
-    // get next question
-    var $question = Exam.questions[ Exam.state.nextQuestion.index ];
-    var $questionNumber = Exam.state.nextQuestion.index +1;
+  questionShow: function( $question, $questionNumber ) {
 
     // populate templates
     var $template = $('#question-template').html();
@@ -80,10 +110,17 @@ var Exam = {
     var $optionsHtml = '';
     $question.options.forEach( function( option, index ) {
       var $template = $('#question-option-template').html();
+
+      console.log(option);
+
+      console.log( $template );
       $template = $template.replace(
-        '{questionOptionId}',
+        /\{questionOptionId\}/g,
         option.id
       );
+      console.log( $template );
+
+
       $template = $template.replace(
         '{questionOptionLabel}',
         option.label
