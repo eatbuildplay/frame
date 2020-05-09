@@ -23,6 +23,15 @@ var Exam = {
     Exam.examLoad();
     Exam.next();
 
+    Exam.showStart();
+    Exam.startClickHandler();
+
+    Exam.restartClickHandler();
+
+  },
+
+  restartClickHandler: function() {
+    $(document).on('click', '.exam-control-restart', Exam.showStart);
   },
 
   questionCount: function() {
@@ -31,14 +40,50 @@ var Exam = {
 
   end: function() {
 
-    var $template = $('#exam-single-end').html();
-    /*$template = $template.replace(
-      '{questionId}',
-      $question.id
-    );*/
+    Exam.hideControls();
 
+    var $template = $('#exam-single-end').html();
     Exam.canvas.body.html( $template );
 
+  },
+
+  showStart: function() {
+
+    var $template = $('#exam-single-start').html();
+    Exam.canvas.body.html( $template );
+
+  },
+
+  startClickHandler: function() {
+    $(document).on('click', '.exam-control-start', Exam.start);
+  },
+
+  start: function() {
+
+    // show question
+    var $question = Exam.questions[ 0 ];
+    var $questionNumber = 1;
+    Exam.questionShow( $question, $questionNumber );
+    Exam.state.currentQuestion.index = 0;
+    Exam.state.currentQuestion.question = $question;
+
+    // show controls
+    Exam.loadControls();
+    Exam.showControls();
+
+  },
+
+  loadControls: function() {
+    var $template = $('#exam-controls').html();
+    Exam.canvas.controls.html( $template );
+  },
+
+  showControls: function() {
+    Exam.canvas.controls.show();
+  },
+
+  hideControls: function() {
+    Exam.canvas.controls.hide();
   },
 
   showLastQuestion: function() {
@@ -72,6 +117,9 @@ var Exam = {
 
   },
 
+  /*
+   * Load exam data via AJAX
+   */
   examLoad: function() {
 
     data = {
@@ -83,14 +131,6 @@ var Exam = {
       response = JSON.parse(response);
       Exam.exam = response.exam;
       Exam.questions = response.exam.questions;
-
-      // Show question
-      // fire exam loaded event here
-      var $question = Exam.questions[ 0 ];
-      var $questionNumber = 1;
-      Exam.questionShow( $question, $questionNumber );
-      Exam.state.currentQuestion.index = 0;
-      Exam.state.currentQuestion.question = $question;
 
     });
 

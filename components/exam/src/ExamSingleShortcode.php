@@ -80,6 +80,11 @@ class ExamSingleShortcode {
     $template->name = 'question-option-single';
     $content .= $template->get();
 
+    // start screen template
+    $template->name = 'exam-single-start';
+    $template->data = array();
+    $content .= $template->get();
+
     // end screen template
     $template->name = 'exam-single-end';
     $template->data = array();
