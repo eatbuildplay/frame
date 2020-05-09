@@ -26,7 +26,7 @@ class QuestionAnswer {
 
     $uid = get_current_user_id();
     update_post_meta( $this->id, 'user', $uid );
-    update_post_meta( $this->id, 'examScore', $examScore );
+    update_post_meta( $this->id, 'examScore', $this->examScore );
 
     if( is_object( $this->question )) {
       update_post_meta( $this->id, 'question', $this->question->id );

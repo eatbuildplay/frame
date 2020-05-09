@@ -12,6 +12,22 @@ class ExamSingleShortcode {
 
     add_action( 'wp_ajax_frame_exam_question_load', array( $this, 'jxQuestionLoad'));
     add_action( 'wp_ajax_frame_exam_exam_load', array( $this, 'jxExamLoad'));
+    add_action( 'wp_ajax_frame_exam_create_exam_score', array( $this, 'jxExamScoreCreate'));
+
+  }
+
+  public function jxExamScoreCreate() {
+
+    $examId = $_POST['examId'];
+
+    // create exam score
+
+    $response = array(
+      'examScoreId' => 6
+    );
+    print json_encode( $response );
+
+    wp_die();
 
   }
 

@@ -8,6 +8,9 @@ var Exam = {
     controls: $('#exam-controls-canvas'),
   },
   exam: [],
+  score: {
+    id: 0
+  },
   questions: [],
   state: {
     started: false,
@@ -60,6 +63,9 @@ var Exam = {
 
   start: function() {
 
+    // make ExamScore
+    Exam.createExamScore();
+
     // show question
     var $question = Exam.questions[ 0 ];
     var $questionNumber = 1;
@@ -70,6 +76,23 @@ var Exam = {
     // show controls
     Exam.loadControls();
     Exam.showControls();
+
+  },
+
+  createExamScore: function() {
+
+    data = {
+      action: 'frame_exam_create_exam_score',
+      examId: Exam.id
+    }
+    $.post( frame_post_list_load.ajaxurl, data, function( response ) {
+
+      response = JSON.parse(response);
+      console.log( response );
+
+      Exam.score.id = response.examScoreId;
+
+    });
 
   },
 

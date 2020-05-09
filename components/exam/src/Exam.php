@@ -14,6 +14,8 @@ class Exam {
     // load models
     require_once( FRAME_PATH . 'components/exam/src/models/Exam.php' );
     require_once( FRAME_PATH . 'components/exam/src/models/ExamList.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/ExamScore.php' );
+    require_once( FRAME_PATH . 'components/exam/src/models/ExamScoreList.php' );
     require_once( FRAME_PATH . 'components/exam/src/models/Question.php' );
     require_once( FRAME_PATH . 'components/exam/src/models/QuestionList.php' );
     require_once( FRAME_PATH . 'components/exam/src/models/QuestionOption.php' );
