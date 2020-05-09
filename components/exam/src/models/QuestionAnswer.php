@@ -6,9 +6,12 @@ class QuestionAnswer {
 
   public $id;
   public $title;
+  public $examScore;
   public $user;
   public $question;
   public $questionOption;
+  public $correct;
+  public $points;
 
   public function save() {
 
@@ -23,6 +26,7 @@ class QuestionAnswer {
 
     $uid = get_current_user_id();
     update_post_meta( $this->id, 'user', $uid );
+    update_post_meta( $this->id, 'examScore', $examScore );
 
     if( is_object( $this->question )) {
       update_post_meta( $this->id, 'question', $this->question->id );
@@ -35,6 +39,9 @@ class QuestionAnswer {
     } else {
       update_post_meta( $this->id, 'question_option', $this->questionOption );
     }
+
+    update_post_meta( $this->id, 'correct', $this->correct );
+    update_post_meta( $this->id, 'points', $this->points );
 
   }
 
