@@ -3,7 +3,10 @@
 var Exam = {
 
   id: $('#exam-canvas').data('exam-id'),
-  canvas: $('#exam-canvas'),
+  canvas: {
+    body: $('#exam-body-canvas'),
+    controls: $('#exam-controls-canvas'),
+  },
   exam: [],
   questions: [],
   state: {
@@ -27,7 +30,15 @@ var Exam = {
   },
 
   end: function() {
-    console.log('welcome to end');
+
+    var $template = $('#exam-single-end').html();
+    /*$template = $template.replace(
+      '{questionId}',
+      $question.id
+    );*/
+
+    Exam.canvas.body.html( $template );
+
   },
 
   showLastQuestion: function() {
@@ -102,7 +113,7 @@ var Exam = {
       'Question ' + $questionNumber
     );
 
-    Exam.canvas.html( $template );
+    Exam.canvas.body.html( $template );
 
     // get the question as an element so we can make changes
     var $questionEl = $('.question');
@@ -133,25 +144,6 @@ var Exam = {
     });
 
     $questionEl.find('ul').html( $optionsHtml );
-
-  },
-
-  questionLoad: function() {
-
-    var $questionId = Exam.questions[0].id;
-
-    data = {
-      action: 'frame_exam_question_load',
-      questionId: $questionId
-    }
-    $.post( frame_post_list_load.ajaxurl, data, function( response ) {
-
-       response = JSON.parse(response);
-       console.log( response );
-
-       Exam.canvas.html( response.question.title )
-
-    });
 
   },
 

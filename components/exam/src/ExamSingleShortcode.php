@@ -59,11 +59,30 @@ class ExamSingleShortcode {
 
     $content = '';
 
+    // main template
     $template->name = 'exam-single';
     $template->data = array(
       'exam' => $exam,
       'examFields' => $examFields
     );
+    $content .= $template->get();
+
+    // exam controls template
+    $template->name = 'exam-single-controls';
+    $template->data = array();
+    $content .= $template->get();
+
+    // question template
+    $template->name = 'question-single';
+    $content .= $template->get();
+
+    // question options template
+    $template->name = 'question-option-single';
+    $content .= $template->get();
+
+    // end screen template
+    $template->name = 'exam-single-end';
+    $template->data = array();
     $content .= $template->get();
 
     return $content;
