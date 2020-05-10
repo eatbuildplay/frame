@@ -19,6 +19,8 @@ class ExamSingleShortcode {
 
   public function jxRecordAnswer() {
 
+    print "HELLLOOOOO";
+
     // record answer
     $questionAnswer = new Model\QuestionAnswer();
     $questionAnswer->question = $_POST['questionId'];
