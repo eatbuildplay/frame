@@ -10,9 +10,37 @@ class ExamSingleShortcode {
 
     add_action('init', array( $this, 'init'));
 
+    add_action( 'wp_ajax_frame_exam_record_answer', array( $this, 'jxRecordAnswer'));
     add_action( 'wp_ajax_frame_exam_question_load', array( $this, 'jxQuestionLoad'));
     add_action( 'wp_ajax_frame_exam_exam_load', array( $this, 'jxExamLoad'));
     add_action( 'wp_ajax_frame_exam_create_exam_score', array( $this, 'jxExamScoreCreate'));
+
+  }
+
+  public function jxRecordAnswer() {
+
+    // record answer
+    $questionAnswer = new Model\QuestionAnswer();
+    $questionAnswer->question = $_POST['questionId'];
+    $questionAnswer->questionOption = $_POST['questionOptionId'];
+    $questionAnswer->save();
+
+    // do marking
+    $isCorrect = false;
+    $questionPost = get_post( $questionAnswer->question );
+    $question = Model\Question::load( $questionPost );
+    if( $questionAnswer->questionOption == $question->correct->id ) {
+      $isCorrect = true;
+    }
+
+    $response = array(
+      'isCorrect' => $isCorrect,
+      'question' => $question,
+      'message' => 'Your answer was marked.'
+    );
+    print json_encode( $response );
+
+    wp_die();
 
   }
 
@@ -21,9 +49,12 @@ class ExamSingleShortcode {
     $examId = $_POST['examId'];
 
     // create exam score
+    $examScore = new \Frame\Exam\Model\ExamScore;
+    $examScore->exam = $examId;
+    $examScore->save();
 
     $response = array(
-      'examScoreId' => 6
+      'examScoreId' => $examScore->id
     );
     print json_encode( $response );
 

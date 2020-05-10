@@ -8,7 +8,7 @@ class Exam {
 
     add_action('init', [$this, 'registerPostTypes']);
 
-    require_once( FRAME_PATH . 'components/exam/src/ExamSingleShortcode.php' );
+    require_once( FRAME_PATH . 'components/exam/src/shortcodes/ExamSingleShortcode.php' );
     new ExamSingleShortcode();
 
     // load models
@@ -25,35 +25,6 @@ class Exam {
 
 
     add_action('wp_enqueue_scripts', array( $this, 'scripts' ));
-
-    add_action( 'wp_ajax_frame_exam_record_answer', array( $this, 'jxRecordAnswer'));
-
-  }
-
-  public function jxRecordAnswer() {
-
-    // record answer
-    $questionAnswer = new Model\QuestionAnswer();
-    $questionAnswer->question = $_POST['questionId'];
-    $questionAnswer->questionOption = $_POST['questionOptionId'];
-    $questionAnswer->save();
-
-    // do marking
-    $isCorrect = false;
-    $questionPost = get_post( $questionAnswer->question );
-    $question = Model\Question::load( $questionPost );
-    if( $questionAnswer->questionOption == $question->correct->id ) {
-      $isCorrect = true;
-    }
-
-    $response = array(
-      'isCorrect' => $isCorrect,
-      'question' => $question,
-      'message' => 'Your answer was marked.'
-    );
-    print json_encode( $response );
-
-    wp_die();
 
   }
 
@@ -78,35 +49,39 @@ class Exam {
 
   public function registerPostTypes() {
 
-    require_once( FRAME_PATH . 'components/exam/src/ExamPostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/ExamPostType.php' );
     $pt = new ExamPostType();
     $pt->register();
 
-    require_once( FRAME_PATH . 'components/exam/src/ExamScorePostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/ExamScorePostType.php' );
     $pt = new ExamScorePostType();
     $pt->register();
 
-    require_once( FRAME_PATH . 'components/exam/src/ExamSectionPostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/ExamScoreQuestionPostType.php' );
+    $pt = new ExamScoreQuestionPostType();
+    $pt->register();
+
+    require_once( FRAME_PATH . 'components/exam/src/cpt/ExamSectionPostType.php' );
     $pt = new ExamSectionPostType();
     $pt->register();
 
-    require_once( FRAME_PATH . 'components/exam/src/QuestionPostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/QuestionPostType.php' );
     $pt = new QuestionPostType();
     $pt->register();
 
-    require_once( FRAME_PATH . 'components/exam/src/QuestionTypePostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/QuestionTypePostType.php' );
     $pt = new QuestionTypePostType();
     $pt->register();
 
-    require_once( FRAME_PATH . 'components/exam/src/QuestionAnswerPostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/QuestionAnswerPostType.php' );
     $pt = new QuestionAnswerPostType();
     $pt->register();
 
-    require_once( FRAME_PATH . 'components/exam/src/QuestionOptionPostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/QuestionOptionPostType.php' );
     $pt = new QuestionOptionPostType();
     $pt->register();
 
-    require_once( FRAME_PATH . 'components/exam/src/QuestionBankPostType.php' );
+    require_once( FRAME_PATH . 'components/exam/src/cpt/QuestionBankPostType.php' );
     $pt = new QuestionBankPostType();
     $pt->register();
 
