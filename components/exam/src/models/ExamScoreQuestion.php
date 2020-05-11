@@ -10,7 +10,7 @@ class ExamScoreQuestion {
   public $examScore = 0;
   public $questionAnswer;
   public $correct;
-  public $points
+  public $points = 0;
 
   public function save() {
 
@@ -42,7 +42,7 @@ class ExamScoreQuestion {
   public function create() {
 
     $params = [
-      'post_type'   => 'exam_score',
+      'post_type'   => 'exam_score_question',
       'post_title'  => $this->title,
       'post_status' => 'publish'
     ];

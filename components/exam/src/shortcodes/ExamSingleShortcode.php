@@ -19,13 +19,19 @@ class ExamSingleShortcode {
 
   public function jxRecordAnswer() {
 
-    print "HELLLOOOOO";
+    $examScoreId = $_POST['examScoreId'];
 
-    // record answer
+    // add QuestionAnswer
     $questionAnswer = new Model\QuestionAnswer();
     $questionAnswer->question = $_POST['questionId'];
     $questionAnswer->questionOption = $_POST['questionOptionId'];
     $questionAnswer->save();
+
+    // add related ExamQuestionScore
+    $scoreQuestion = new Model\ExamScoreQuestion();
+    $scoreQuestion->title = "ESQ-".time();
+    $scoreQuestion->examScore = $examScoreId;
+
 
     // do marking
     $isCorrect = false;
@@ -34,6 +40,12 @@ class ExamSingleShortcode {
     if( $questionAnswer->questionOption == $question->correct->id ) {
       $isCorrect = true;
     }
+
+    $scoreQuestion->correct = $isCorrect;
+    if( $isCorrect ) {
+      $scoreQuestion->points = 1;
+    }
+    $scoreQuestion->save();
 
     $response = array(
       'isCorrect' => $isCorrect,

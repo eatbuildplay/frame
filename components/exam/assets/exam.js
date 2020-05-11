@@ -231,6 +231,7 @@ var Exam = {
 
     data = {
       action: 'frame_exam_record_answer',
+      examScoreId: Exam.score.id,
       questionId: $questionId,
       questionOptionId: $questionOptionId
     }
