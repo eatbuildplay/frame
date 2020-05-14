@@ -5,6 +5,8 @@ namespace Frame;
 class PostType {
 
   public $settings = [];
+  public $showInMenu = true;
+  public $menuPosition = 10;
 
   public function getKey() {
     return 'frame';
@@ -54,8 +56,8 @@ class PostType {
   		'hierarchical'          => false,
   		'public'                => true,
   		'show_ui'               => true,
-  		'show_in_menu'          => true,
-  		'menu_position'         => 5,
+  		'show_in_menu'          => $this->showInMenu,
+  		'menu_position'         => $this->menuPosition,
   		'show_in_admin_bar'     => true,
   		'show_in_nav_menus'     => true,
   		'can_export'            => true,

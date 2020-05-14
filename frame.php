@@ -43,6 +43,38 @@ class Plugin {
     require_once( FRAME_PATH . 'components/exam/src/Exam.php' );
     new \Frame\Exam\Exam();
 
+
+
+
+    add_action('admin_menu', [$this, 'menu']);
+
+
+  }
+
+  public function menu() {
+
+    acf_add_options_page(array(
+      'page_title' 	=> 'Frame',
+      'menu_title'	=> 'Frame',
+      'menu_slug' 	=> 'frame-dashboard',
+      'capability'	=> 'edit_posts',
+      'redirect'		=> false
+    ));
+
+    acf_add_options_sub_page(array(
+      'page_title' 	=> 'Components',
+      'menu_title'	=> 'Components',
+      'parent_slug'	=> 'frame-dashboard',
+    ));
+
+    \add_submenu_page(
+      'frame-dashboard',            // parent slug
+      'Exams',             // page title
+      'Exams',             // sub-menu title
+      'edit_posts',                 // capability
+      'edit.php?post_type=exam' // your menu menu slug
+  );
+
   }
 
 }
