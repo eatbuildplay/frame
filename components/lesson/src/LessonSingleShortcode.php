@@ -20,6 +20,43 @@ class LessonSingleShortcode {
     $lesson = $post;
     $lessonFields = get_fields( $lesson->ID );
 
+    // get next lesson
+    // $lessonFields['display_order']
+    $nextLesson = false; // default false
+    $lessons = get_posts([
+      'post_type'   => 'lesson',
+      'orderby'     => 'meta_value_num',
+      'order'       => 'ASC',
+      'meta_key'    => 'display_order',
+      'meta_query'  => [
+        [
+          'key'     => 'display_order',
+          'value'   => $lessonFields['display_order'],
+          'compare' => '>'
+        ],
+        [
+          'key'     => 'course',
+          'value'   => $lessonFields['course'],
+          'compare' => '='
+        ]
+      ]
+    ]);
+    if( !empty( $lessons )) {
+      $nextLesson = $lessons[0];
+      $nextLesson->url = get_permalink( $nextLesson );
+    }
+
+    // localize lesson data
+    wp_localize_script(
+      'frame-lesson-js',
+      'frameLesson',
+      [
+        'fields'      => $lessonFields,
+        'post'        => $lesson,
+        'nextLesson'  => $nextLesson
+      ]
+    );
+
     $template = new \Frame\Template();
     $template->path = 'components/lesson/templates/';
 

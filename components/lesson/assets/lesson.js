@@ -359,8 +359,7 @@
 
   // next lesson button
   $('.s10-next-lesson').on('click', function() {
-    // we need to stash in JS the "next lesson" in the series
-    window.location.href = 'https://spanish10.com/lesson/lesson-5-colors/';
+    window.location.href = frameLesson.nextLesson.url;
   })
 
 })( jQuery );
