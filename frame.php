@@ -29,8 +29,8 @@ class Plugin {
     require_once( FRAME_PATH . 'src/post_types/PostType.php' );
 
     // AWS SDK and Polly
-    require_once( FRAME_PATH . 'vendor/aws/aws-autoloader.php' );
-    require_once( FRAME_PATH . 'src/aws/Polly.php' );
+    //require_once( FRAME_PATH . 'vendor/aws/aws-autoloader.php' );
+    //require_once( FRAME_PATH . 'src/aws/Polly.php' );
 
     require_once( FRAME_PATH . 'components/course/src/Course.php' );
     new \Frame\Course\Course();
